@@ -234,3 +234,4 @@ export {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
 };
+export default function _Component() { return null; }

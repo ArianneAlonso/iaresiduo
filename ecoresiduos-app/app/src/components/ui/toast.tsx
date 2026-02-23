@@ -241,3 +241,5 @@ export {
   ToastAction,
   useToast,
 };
+
+export default function _Component() { return null; }

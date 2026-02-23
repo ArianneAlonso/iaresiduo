@@ -194,3 +194,4 @@ export {
   SelectScrollUpButton,
   SelectScrollDownButton,
 };
+export default function _Component() { return null; }

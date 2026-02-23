@@ -91,3 +91,4 @@ const styles = StyleSheet.create({
 })
 
 export { Menubar }
+export default function _Component() { return null; }

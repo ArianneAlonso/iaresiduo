@@ -116,3 +116,4 @@ const styles = StyleSheet.create({
 })
 
 export { NavigationMenu }
+export default function _Component() { return null; }

@@ -138,3 +138,5 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
 });
+
+export default function _Component() { return null; }

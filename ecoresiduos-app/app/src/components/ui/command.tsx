@@ -258,3 +258,4 @@ export {
   CommandSeparator,
   CommandShortcut,
 };
+export default function _Component() { return null; }

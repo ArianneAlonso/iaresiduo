@@ -160,3 +160,4 @@ export {
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
 };
+export default function _Component() { return null; }

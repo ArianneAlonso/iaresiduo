@@ -43,3 +43,4 @@ const styles = StyleSheet.create({
 });
 
 export { ScrollArea, ScrollAreaContainer };
+export default function _Component() { return null; }

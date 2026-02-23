@@ -165,3 +165,5 @@ const styles = StyleSheet.create({
 });
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };
+
+export default function _Component() { return null; }

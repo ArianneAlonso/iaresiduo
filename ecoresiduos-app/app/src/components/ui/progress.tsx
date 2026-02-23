@@ -35,3 +35,4 @@ const styles = StyleSheet.create({
 })
 
 export { Progress }
+export default function _Component() { return null; }

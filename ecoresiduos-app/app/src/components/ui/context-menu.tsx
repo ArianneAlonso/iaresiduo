@@ -208,3 +208,4 @@ export {
   ContextMenuRadioItem,
   ContextMenuSeparator,
 };
+export default function _Component() { return null; }

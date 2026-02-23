@@ -74,3 +74,5 @@ const styles = StyleSheet.create({
 });
 
 export { Avatar, AvatarImage, AvatarFallback };
+
+export default function _Component() { return null; }

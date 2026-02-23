@@ -82,3 +82,4 @@ const styles = StyleSheet.create({
 })
 
 export { RadioGroup }
+export default function _Component() { return null; }

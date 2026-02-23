@@ -92,3 +92,4 @@ const styles = StyleSheet.create({
 })
 
 export { InputOTP, InputOTPSeparator }
+export default function _Component() { return null; }

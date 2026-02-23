@@ -246,3 +246,5 @@ const styles = StyleSheet.create({
 });
 
 export { AlertDialogContext };
+
+export default function _Component() { return null; }

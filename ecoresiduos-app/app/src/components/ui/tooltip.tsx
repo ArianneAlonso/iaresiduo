@@ -132,3 +132,5 @@ export {
   TooltipTrigger, 
   TooltipContent 
 };
+
+export default function _Component() { return null; }

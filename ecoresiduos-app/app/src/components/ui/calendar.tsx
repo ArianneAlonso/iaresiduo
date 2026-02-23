@@ -235,3 +235,5 @@ const styles = StyleSheet.create({
 
 export { Calendar };
 export type { CalendarProps };
+
+export default function _Component() { return null; }

@@ -144,3 +144,4 @@ const styles = StyleSheet.create({
 })
 
 export { Pagination }
+export default function _Component() { return null; }

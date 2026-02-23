@@ -38,3 +38,4 @@ const styles = StyleSheet.create({
 })
 
 export { Label }
+export default function _Component() { return null; }

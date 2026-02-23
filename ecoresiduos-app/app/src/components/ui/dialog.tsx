@@ -179,3 +179,5 @@ export {
   DialogTitle,
   DialogDescription,
 };
+
+export default function _Component() { return null; }

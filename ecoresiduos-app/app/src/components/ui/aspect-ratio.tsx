@@ -24,3 +24,5 @@ const AspectRatio = ({ ratio, children, style, ...props }: AspectRatioProps) => 
 };
 
 export { AspectRatio };
+
+export default function _Component() { return null; }

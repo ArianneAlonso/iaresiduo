@@ -56,3 +56,4 @@ const styles = StyleSheet.create({
 })
 
 export { Popover }
+export default function _Component() { return null; }

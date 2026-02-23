@@ -62,3 +62,5 @@ const styles = StyleSheet.create({
 });
 
 export { Skeleton };
+
+export default function _Component() { return null; }

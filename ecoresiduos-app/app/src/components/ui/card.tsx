@@ -132,3 +132,5 @@ export {
   CardDescription,
   CardContent,
 };
+
+export default function _Component() { return null; }

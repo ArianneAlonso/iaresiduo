@@ -184,3 +184,5 @@ export {
   DrawerTitle,
   DrawerDescription,
 };
+
+export default function _Component() { return null; }

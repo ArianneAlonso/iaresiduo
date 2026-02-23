@@ -137,3 +137,4 @@ const sizeStyles: Record<Size, ViewStyle> = {
 };
 
 export { Button };
+export default function _Component() { return null; }

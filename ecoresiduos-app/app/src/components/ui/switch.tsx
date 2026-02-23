@@ -69,3 +69,5 @@ const styles = StyleSheet.create({
 });
 
 export { Switch };
+
+export default function _Component() { return null; }

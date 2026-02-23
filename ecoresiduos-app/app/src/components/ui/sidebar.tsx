@@ -307,3 +307,5 @@ export {
   SidebarMenuButton,
   useSidebar,
 };
+
+export default function _Component() { return null; }

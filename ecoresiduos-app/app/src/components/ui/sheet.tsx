@@ -246,3 +246,5 @@ export {
   SheetTitle,
   SheetDescription,
 };
+
+export default function _Component() { return null; }

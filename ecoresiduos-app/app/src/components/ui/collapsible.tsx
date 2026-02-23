@@ -100,3 +100,4 @@ const styles = StyleSheet.create({
 });
 
 export { Collapsible };
+export default function _Component() { return null; }

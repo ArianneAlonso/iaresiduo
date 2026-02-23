@@ -156,3 +156,5 @@ const styles = StyleSheet.create({
 });
 
 export { Slider };
+
+export default function _Component() { return null; }

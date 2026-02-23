@@ -103,3 +103,4 @@ const styles = StyleSheet.create({
 });
 
 export { Toggle };
+export default function _Component() { return null; }

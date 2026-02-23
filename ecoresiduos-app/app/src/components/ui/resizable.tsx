@@ -110,3 +110,4 @@ const styles = StyleSheet.create({
     cursor: "col-resize",
   },
 });
+export default function _Component() { return null; }

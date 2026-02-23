@@ -84,3 +84,4 @@ const styles = StyleSheet.create({
 });
 
 export { HoverCard, HoverCardTrigger, HoverCardContent };
+export default function _Component() { return null; }

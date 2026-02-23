@@ -221,3 +221,4 @@ const styles = StyleSheet.create({
 });
 
 export { Carousel, CarouselItem, CarouselPrevious, CarouselNext };
+export default function _Component() { return null; }

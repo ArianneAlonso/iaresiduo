@@ -77,3 +77,5 @@ const styles = StyleSheet.create({
 });
 
 export { Checkbox };
+
+export default function _Component() { return null; }

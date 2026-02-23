@@ -38,3 +38,5 @@ const styles = StyleSheet.create({
 });
 
 export { Separator };
+
+export default function _Component() { return null; }

@@ -169,3 +169,5 @@ export {
   TableCell,
   TableCaption,
 };
+
+export default function _Component() { return null; }

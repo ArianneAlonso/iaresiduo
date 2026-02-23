@@ -162,3 +162,5 @@ const styles = StyleSheet.create({
 });
 
 export { ToggleGroup, ToggleGroupItem };
+
+export default function _Component() { return null; }

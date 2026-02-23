@@ -80,3 +80,5 @@ const styles = StyleSheet.create({
 });
 
 export { Textarea };
+
+export default function _Component() { return null; }

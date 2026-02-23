@@ -82,3 +82,5 @@ const styles = StyleSheet.create({
 });
 
 export { Alert, AlertTitle, AlertDescription };
+
+export default function _Component() { return null; }

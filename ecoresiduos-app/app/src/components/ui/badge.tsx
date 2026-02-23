@@ -67,3 +67,5 @@ const variantStyles: Record<Variant, any> = {
 
 export { Badge };
 export type { BadgeProps };
+
+export default function _Component() { return null; }

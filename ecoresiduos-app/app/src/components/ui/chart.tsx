@@ -223,3 +223,4 @@ export {
   ChartLegend,
   ChartLegendContent,
 };
+export default function _Component() { return null; }

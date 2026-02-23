@@ -55,3 +55,4 @@ export const queryClient = new QueryClient({
     },
   },
 });
+export default function _() { return null; }
