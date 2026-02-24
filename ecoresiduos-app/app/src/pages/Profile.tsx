@@ -50,7 +50,7 @@ export default function Profile() {
               return (
                 <View key={stat.label} style={styles.statItem}>
                   <View style={styles.statIcon}>
-                    <Icon size={24} color="#3b82f6" />
+                    <Icon size={24} color="#1f5c2e" />
                   </View>
                   <Text style={styles.statValue}>{stat.value}</Text>
                   <Text style={styles.statLabel}>{stat.label}</Text>
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
     justifyContent: 'center',
     alignItems: 'center',
   },

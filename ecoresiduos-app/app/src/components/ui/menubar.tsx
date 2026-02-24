@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   trigger: {
     paddingHorizontal: 16,
     paddingVertical: 10,
-    backgroundColor: "#3b82f6",
+    backgroundColor: "#1f5c2e",
     borderRadius: 8,
   },
   triggerText: {

@@ -62,19 +62,19 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 999,
     borderWidth: 2,
-    borderColor: "#3b82f6",
+    borderColor: "#1f5c2e",
     alignItems: "center",
     justifyContent: "center",
     marginRight: 10,
   },
   radioOuterSelected: {
-    borderColor: "#3b82f6",
+    borderColor: "#1f5c2e",
   },
   radioInner: {
     width: 10,
     height: 10,
     borderRadius: 999,
-    backgroundColor: "#3b82f6",
+    backgroundColor: "#1f5c2e",
   },
   label: {
     fontSize: 16,

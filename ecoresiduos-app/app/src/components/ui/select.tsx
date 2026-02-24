@@ -93,7 +93,7 @@ const SelectItem = ({ value, children, onPress, ...props }: SelectItemProps) => 
   return (
     <TouchableOpacity style={styles.item} onPress={onPress} {...props}>
       <Text style={styles.itemText}>{children}</Text>
-      <Check size={20} color="#3b82f6" style={styles.checkHidden} />
+      <Check size={20} color="#1f5c2e" style={styles.checkHidden} />
     </TouchableOpacity>
   );
 };

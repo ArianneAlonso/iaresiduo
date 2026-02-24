@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   daySelected: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
   },
   dayToday: {
     borderWidth: 2,

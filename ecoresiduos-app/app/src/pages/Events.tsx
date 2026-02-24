@@ -50,7 +50,7 @@ export default function Events() {
       <View style={styles.content}>
         <Card style={styles.calendarCard}>
           <View style={styles.calendarHeader}>
-            <CalendarIcon size={20} color="#3b82f6" />
+            <CalendarIcon size={20} color="#1f5c2e" />
             <Text style={styles.calendarTitle}>Noviembre 2025</Text>
           </View>
           
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8fafc',
   },
   calendarDayActive: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
   },
   dayAbbr: {
     fontSize: 12,

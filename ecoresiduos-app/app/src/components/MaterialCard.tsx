@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
   },
   cardSelected: {
     borderWidth: 2,
-    borderColor: '#3b82f6',
+    borderColor: '#1f5c2e',
     backgroundColor: '#f0f9ff',
-    shadowColor: '#3b82f6',
+    shadowColor: '#1f5c2e',
     shadowOpacity: 0.25,
   },
   content: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f1f5f9',
   },
   iconSelected: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
   },
   label: {
     fontSize: 14,

@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   pressed: {
     backgroundColor: '#e0e7ff',
-    borderColor: '#3b82f6',
+    borderColor: '#1f5c2e',
   },
   sm: {
     height: 36,

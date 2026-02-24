@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   checkboxChecked: {
-    backgroundColor: '#3b82f6',
-    borderColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
+    borderColor: '#1f5c2e',
   },
   checkboxDisabled: {
     opacity: 0.5,

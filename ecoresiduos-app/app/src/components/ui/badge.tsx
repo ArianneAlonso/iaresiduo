@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 
 const variantStyles: Record<Variant, any> = {
   default: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
   },
   secondary: {
     backgroundColor: '#6b7280',

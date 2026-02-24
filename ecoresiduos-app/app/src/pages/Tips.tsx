@@ -44,7 +44,7 @@ const containers = [
   {
     name: "Contenedor Verde",
     materials: ["Plástico", "Vidrio", "Papel", "Cartón"],
-    color: "#3b82f6",
+    color: "#1f5c2e",
   },
   {
     name: "Contenedor Marrón",
@@ -143,7 +143,7 @@ export default function Tips() {
         <Card style={styles.quickTipsCard}>
           <View style={styles.quickTipsHeader}>
             <View style={styles.iconCircle}>
-              <Lightbulb size={24} color="#3b82f6" />
+              <Lightbulb size={24} color="#1f5c2e" />
             </View>
             <View style={styles.quickTipsContent}>
               <Text style={styles.sectionTitle}>Consejos Rápidos</Text>
@@ -160,7 +160,7 @@ export default function Tips() {
         {/* Waste Types */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Trash2 size={20} color="#3b82f6" />
+            <Trash2 size={20} color="#1f5c2e" />
             <Text style={styles.sectionTitle}>Tipos de Residuos</Text>
           </View>
           {wasteTypes.map((type, index) => {
@@ -191,7 +191,7 @@ export default function Tips() {
         {/* Containers */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Package size={20} color="#3b82f6" />
+            <Package size={20} color="#1f5c2e" />
             <Text style={styles.sectionTitle}>Tipos de Contenedores</Text>
           </View>
           {containers.map((container, index) => (
@@ -216,7 +216,7 @@ export default function Tips() {
         {/* 3 Rs */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Recycle size={20} color="#3b82f6" />
+            <Recycle size={20} color="#1f5c2e" />
             <Text style={styles.sectionTitle}>Las 3 Rs del Reciclaje</Text>
           </View>
           {threeRs.map((r, index) => {
@@ -229,7 +229,7 @@ export default function Tips() {
               >
                 <View style={styles.threeRHeader}>
                   <View style={styles.threeRIcon}>
-                    <Icon size={20} color="#3b82f6" />
+                    <Icon size={20} color="#1f5c2e" />
                   </View>
                   <View style={styles.threeRContent}>
                     <Text style={styles.threeRTitle}>{r.title}</Text>
@@ -258,7 +258,7 @@ export default function Tips() {
         {/* Compost */}
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
-            <Leaf size={20} color="#3b82f6" />
+            <Leaf size={20} color="#1f5c2e" />
             <Text style={styles.sectionTitle}>Cómo Hacer Compost en Casa</Text>
           </View>
           <Card style={styles.compostCard}>
@@ -280,7 +280,7 @@ export default function Tips() {
         {/* Impact */}
         <Card style={styles.impactCard}>
           <View style={styles.impactHeader}>
-            <BookOpen size={24} color="#3b82f6" />
+            <BookOpen size={24} color="#1f5c2e" />
             <View style={styles.impactContent}>
               <Text style={styles.impactTitle}>Impacto Ambiental</Text>
               <Text style={styles.impactIntro}>
@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
     marginBottom: 8 
   },
   bullet: { 
-    color: '#3b82f6', 
+    color: '#1f5c2e', 
     fontSize: 16, 
     fontWeight: 'bold', 
     marginTop: 2 
@@ -495,7 +495,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
     justifyContent: 'center',
     alignItems: 'center',
     color: '#fff',

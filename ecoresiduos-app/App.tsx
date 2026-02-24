@@ -6,6 +6,7 @@ import { Toaster } from './app/src/components/ui/toaster';
 import { TooltipProvider } from './app/src/components/ui/tooltip';
 import { ToastProvider } from './app/src/components/ui/toast';
 
+import WelcomeScreen from './app/src/pages/Welcome';
 import Login from './app/src/pages/Login';
 import Register from './app/src/pages/Register';
 import Home from './app/src/pages/Home';
@@ -20,10 +21,20 @@ import NotFound from './app/src/pages/not-found';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+export type RootStackParamList = {
+  Welcome: undefined;
+  Login: undefined;
+  Register: undefined;
+  MainTabs: undefined;
+  Events: undefined;
+  Tips: undefined;
+  NotFound: undefined;
+};
+
 const queryClient = new QueryClient();
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function MainTabs() {
   return (
@@ -39,7 +50,11 @@ function MainTabs() {
 
 function AppRouter() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="MainTabs" component={MainTabs} />

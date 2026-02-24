@@ -81,7 +81,7 @@ export default function Map() {
 
         <View style={styles.mapPlaceholder}>
           <View style={styles.mapOverlay} />
-          <MapPin size={32} color="#3b82f6" style={styles.mapIcon} />
+          <MapPin size={32} color="#1f5c2e" style={styles.mapIcon} />
           <Text style={styles.mapText}>Mapa interactivo (placeholder)</Text>
         </View>
 
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
   filterBadgeActive: {
     paddingHorizontal: 12,
     paddingVertical: 6,
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
     borderRadius: 20,
   },
   filterText: {

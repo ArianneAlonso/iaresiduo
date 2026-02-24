@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3f4f6",
   },
   active: {
-    backgroundColor: "#3b82f6",
+    backgroundColor: "#1f5c2e",
   },
   pageText: {
     fontSize: 14,

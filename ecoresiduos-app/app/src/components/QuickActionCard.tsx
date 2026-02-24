@@ -21,7 +21,7 @@ export default function QuickActionCard({ icon: Icon, title, description, onPres
       <Card style={styles.card}>
         <View style={styles.content}>
           <View style={styles.iconContainer}>
-            <Icon size={24} color="#3b82f6" />
+            <Icon size={24} color="#1f5c2e" />
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.title} numberOfLines={1}>{title}</Text>

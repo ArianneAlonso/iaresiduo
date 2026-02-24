@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   hero: {
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
     paddingHorizontal: 16,
     paddingTop: 24,
     paddingBottom: 32,

@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   inputFilled: {
-    borderColor: '#3b82f6',
+    borderColor: '#1f5c2e',
   },
   separator: {
     justifyContent: 'center',

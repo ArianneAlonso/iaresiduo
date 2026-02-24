@@ -83,7 +83,7 @@ const ChartTooltipContent = React.forwardRef<
           <View
             style={[
               styles.tooltipDot,
-              { backgroundColor: item.color || '#3b82f6' },
+              { backgroundColor: item.color || '#1f5c2e' },
             ]}
           />
           <View style={styles.tooltipText}>
@@ -134,7 +134,7 @@ const ChartLegendContent = React.forwardRef<
             <View
               style={[
                 styles.legendDot,
-                { backgroundColor: item.color || '#3b82f6' },
+                { backgroundColor: item.color || '#1f5c2e' },
               ]}
             />
             <Text style={styles.legendLabel}>

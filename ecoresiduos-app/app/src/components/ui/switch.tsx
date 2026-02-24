@@ -25,7 +25,7 @@ function Switch({
   disabled = false,
   trackColor = {
     false: '#e5e7eb',
-    true: '#3b82f6',
+    true: '#1f5c2e',
   },
   thumbColor = {
     false: '#f3f4f6',
@@ -43,7 +43,7 @@ function Switch({
         disabled={disabled}
         trackColor={{
           false: trackColor.false || (colorScheme === 'dark' ? '#374151' : '#e5e7eb'),
-          true: trackColor.true || '#3b82f6',
+          true: trackColor.true || '#1f5c2e',
         }}
         thumbColor={
           value 

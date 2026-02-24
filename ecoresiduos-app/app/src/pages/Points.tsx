@@ -99,7 +99,7 @@ export default function Points() {
 
         <View style={styles.historySection}>
           <View style={styles.historyHeader}>
-            <History size={20} color="#3b82f6" />
+            <History size={20} color="#1f5c2e" />
             <Text style={styles.sectionTitle}>Actividad Reciente</Text>
           </View>
           <Card style={styles.historyCard}>
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
   },
   historyLink: {
     fontSize: 14,
-    color: '#3b82f6',
+    color: '#1f5c2e',
     fontWeight: '500',
   },
 });

@@ -23,7 +23,7 @@ export default function ContainerMarker({
     <Card style={styles.card}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <MapPin size={20} color="#3b82f6" />
+          <MapPin size={20} color="#1f5c2e" />
         </View>
         <View style={styles.textContainer}>
           <Text style={styles.title} numberOfLines={1}>{type}</Text>

@@ -126,7 +126,7 @@ export default function PickupRequest() {
                   testID="card-scan-option"
                 >
                   <View style={styles.methodIcon}>
-                    <Camera size={24} color="#3b82f6" />
+                    <Camera size={24} color="#1f5c2e" />
                   </View>
                   <View>
                     <Text style={styles.methodTitle}>Escanear con cámara</Text>
@@ -238,7 +238,7 @@ export default function PickupRequest() {
               {Object.entries(containerTypes).map(([type, containers]: [string, any]) => (
                 <View key={type} style={styles.containerGroup}>
                   <Text style={styles.groupTitle}>
-                    <Package size={16} color="#3b82f6" /> {type.charAt(0).toUpperCase() + type.slice(1)}
+                    <Package size={16} color="#1f5c2e" /> {type.charAt(0).toUpperCase() + type.slice(1)}
                   </Text>
                   <View style={styles.containerList}>
                     {containers.map((container: any) => (
@@ -312,13 +312,13 @@ export default function PickupRequest() {
                     testID={`card-schedule-${schedule.id}`}
                   >
                     <View style={styles.scheduleHeader}>
-                      <Calendar size={20} color="#3b82f6" />
+                      <Calendar size={20} color="#1f5c2e" />
                       <View>
                         <Text style={styles.scheduleDay}>{schedule.day} - {schedule.time}</Text>
                         <Text style={styles.scheduleHours}>{schedule.hours}</Text>
                       </View>
                       {selectedSchedule === schedule.id && (
-                        <CheckCircle2 size={20} color="#3b82f6" />
+                        <CheckCircle2 size={20} color="#1f5c2e" />
                       )}
                     </View>
                   </TouchableOpacity>
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: '#e5e7eb',
   },
-  progressStepActive: { backgroundColor: '#3b82f6' },
+  progressStepActive: { backgroundColor: '#1f5c2e' },
   stepContainer: { gap: 16 },
   stepTitle: { fontSize: 20, fontWeight: '600', color: '#111827' },
   stepDescription: { fontSize: 16, color: '#6b7280' },
@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
     borderColor: '#e5e7eb',
   },
   containerCardSelected: {
-    borderColor: '#3b82f6',
+    borderColor: '#1f5c2e',
     backgroundColor: 'rgba(59, 130, 246, 0.05)',
   },
   radioCircle: {
@@ -455,7 +455,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
   },
   containerLabel: { fontSize: 16, flex: 1 },
   summaryCard: { padding: 16 },
@@ -480,7 +480,7 @@ const styles = StyleSheet.create({
     borderColor: '#e5e7eb',
   },
   scheduleCardSelected: {
-    borderColor: '#3b82f6',
+    borderColor: '#1f5c2e',
     backgroundColor: 'rgba(59, 130, 246, 0.05)',
   },
   scheduleHeader: { flexDirection: 'row', alignItems: 'center', flex: 1 },

@@ -26,7 +26,7 @@ function Slider({
   min = 0,
   max = 100,
   step = 1,
-  minimumTrackTintColor = '#3b82f6',
+  minimumTrackTintColor = '#1f5c2e',
   maximumTrackTintColor = '#e5e7eb',
   thumbTintColor = '#ffffff',
   disabled = false,

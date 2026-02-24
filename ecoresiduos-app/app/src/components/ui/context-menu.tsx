@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   checkboxChecked: {
-    backgroundColor: '#3b82f6',
-    borderColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
+    borderColor: '#1f5c2e',
   },
   radio: {
     width: 16,
@@ -186,8 +186,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   radioChecked: {
-    backgroundColor: '#3b82f6',
-    borderColor: '#3b82f6',
+    backgroundColor: '#1f5c2e',
+    borderColor: '#1f5c2e',
     borderWidth: 1,
   },
   itemText: {

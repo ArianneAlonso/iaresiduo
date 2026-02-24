@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
   },
   itemPressed: {
     backgroundColor: '#fff',
-    borderColor: '#3b82f6',
-    shadowColor: '#3b82f6',
+    borderColor: '#1f5c2e',
+    shadowColor: '#1f5c2e',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
