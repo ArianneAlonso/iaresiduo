@@ -1,4 +1,5 @@
 import { MapPin, Search, Filter } from 'lucide-react-native';
+import MapView, { Marker } from 'react-native-maps';
 import AppHeader from '../../src/components/AppHeader';
 import ContainerMarker from '../../src/components/ContainerMarker';
 import { Input } from '../../src/components/ui/input';
@@ -13,6 +14,8 @@ const containers = [
     materials: ["Plástico", "Vidrio", "Papel"],
     distance: "0.5 km",
     schedule: "Lun - Vie: 7:00 AM - 6:00 PM",
+    latitude: -26.1775,
+    longitude: -58.1781,
   },
   {
     id: "2",
@@ -21,6 +24,8 @@ const containers = [
     materials: ["Electrónicos", "Baterías"],
     distance: "1.2 km",
     schedule: "Mar y Jue: 9:00 AM - 5:00 PM",
+    latitude: -26.1800,
+    longitude: -58.1750,
   },
   {
     id: "3",
@@ -29,6 +34,8 @@ const containers = [
     materials: ["Papel", "Cartón"],
     distance: "0.8 km",
     schedule: "Lun - Sáb: 8:00 AM - 8:00 PM",
+    latitude: -26.1750,
+    longitude: -58.1800,
   },
 ];
 
@@ -79,11 +86,27 @@ export default function Map() {
           </TouchableOpacity>
         </ScrollView>
 
-        <View style={styles.mapPlaceholder}>
-          <View style={styles.mapOverlay} />
-          <MapPin size={32} color="#1f5c2e" style={styles.mapIcon} />
-          <Text style={styles.mapText}>Mapa interactivo (placeholder)</Text>
-        </View>
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: -26.1775,
+            longitude: -58.1781,
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02,
+          }}
+        >
+          {containers.map((container) => (
+            <Marker
+              key={container.id}
+              coordinate={{
+                latitude: container.latitude,
+                longitude: container.longitude,
+              }}
+              title={container.type}
+              description={container.address}
+            />
+          ))}
+        </MapView>
 
         <View style={styles.listSection}>
           <Text style={styles.sectionTitle}>Contenedores Cercanos</Text>
@@ -114,7 +137,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     gap: 16,
-    paddingBottom: 100, 
+    paddingBottom: 100,
   },
   searchSection: {
     marginTop: 8,
@@ -160,31 +183,10 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
   },
-  mapPlaceholder: {
+  map: {
     height: 200,
-    backgroundColor: '#f8fafc',
     borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
     overflow: 'hidden',
-  },
-  mapOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(59, 130, 246, 0.05)',
-  },
-  mapIcon: {
-    zIndex: 1,
-  },
-  mapText: {
-    fontSize: 14,
-    color: '#6b7280',
-    marginTop: 8,
-    zIndex: 1,
   },
   listSection: {},
   sectionTitle: {
