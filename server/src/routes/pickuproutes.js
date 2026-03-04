@@ -3,7 +3,7 @@ const { createPickup, getPickups } = require('../controllers/pickupcontroller');
 
 const router = Router();
 
-router.post('/', createPickup);
-router.get('/', getPickups);
+router.post('/pickup', createPickup);
+router.get('/pickups', getPickups);
 
 module.exports = router;
