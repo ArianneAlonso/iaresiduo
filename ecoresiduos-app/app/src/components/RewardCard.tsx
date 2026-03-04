@@ -11,9 +11,17 @@ interface RewardCardProps {
   pointsRequired: number;
   merchant: string;
   imageUrl?: string;
+  onRedeem?: () => void;
 }
 
-export default function RewardCard({ title, description, pointsRequired, merchant, imageUrl }: RewardCardProps) {
+export default function RewardCard({
+  title,
+  description,
+  pointsRequired,
+  merchant,
+  imageUrl,
+  onRedeem,
+}: RewardCardProps) {
   return (
     <Card style={styles.card}>
       <View style={styles.header}>
@@ -21,24 +29,38 @@ export default function RewardCard({ title, description, pointsRequired, merchan
           <Image source={{ uri: imageUrl }} style={styles.image} />
         ) : (
           <View style={styles.placeholder}>
-            <Gift size={48} color="#6b7280" />
+            <Gift size={42} color="#4caf50" />
           </View>
         )}
       </View>
+
       <View style={styles.content}>
         <View style={styles.headerContent}>
-          <Text style={styles.title} numberOfLines={1}>{title}</Text>
+          <Text style={styles.title} numberOfLines={1}>
+            {title}
+          </Text>
+
           <Badge variant="secondary" style={styles.badge}>
-            <Award size={12} color="#6b7280" style={styles.awardIcon} />
+            <Award size={12} color="#2e7d32" style={styles.awardIcon} />
             {pointsRequired}
           </Badge>
         </View>
-        
-        <Text style={styles.description} numberOfLines={2}>{description}</Text>
-        <Text style={styles.merchant}>{merchant}</Text>
-        
-        <Button style={styles.button} variant="outline" testID="button-redeem">
-          Canjear
+
+        <Text style={styles.description} numberOfLines={2}>
+          {description}
+        </Text>
+
+        <Text style={styles.merchant}>
+          {merchant}
+        </Text>
+
+        <Button
+          style={styles.button}
+          variant="outline"
+          onPress={onRedeem}
+          testID="button-redeem"
+        >
+          Canjear recompensa
         </Button>
       </View>
     </Card>
@@ -48,11 +70,12 @@ export default function RewardCard({ title, description, pointsRequired, merchan
 const styles = StyleSheet.create({
   card: {
     overflow: 'hidden',
-    borderRadius: 12,
+    borderRadius: 16,
+    backgroundColor: '#ffffff',
   },
   header: {
-    height: 128,
-    backgroundColor: '#f8fafc',
+    height: 130,
+    backgroundColor: '#e8f5e9',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -65,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    padding: 16,
+    padding: 18,
   },
   headerContent: {
     flexDirection: 'row',
@@ -76,7 +99,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#111827',
+    color: '#1b5e20',
     flex: 1,
     marginRight: 8,
   },
@@ -88,14 +111,15 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    color: '#6b7280',
+    color: '#4b5563',
     marginBottom: 8,
     lineHeight: 20,
   },
   merchant: {
     fontSize: 12,
-    color: '#6b7280',
-    marginBottom: 12,
+    color: '#2e7d32',
+    marginBottom: 14,
+    fontWeight: '500',
   },
   button: {
     width: '100%',

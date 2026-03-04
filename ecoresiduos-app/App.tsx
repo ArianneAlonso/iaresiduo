@@ -36,7 +36,7 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
-const queryClient = new QueryClient();
+import { queryClient } from './app/src/lib/queryClient';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();

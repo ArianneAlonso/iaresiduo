@@ -1,16 +1,48 @@
 import { Truck, QrCode, MapPin, Leaf } from 'lucide-react-native';
 import QuickActionCard from '../../src/components/QuickActionCard';
 import UpcomingCollection from '../../src/components/UpcomingCollection';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import { useQuery } from '@tanstack/react-query';
+import { API_URL } from '../../src/config/api';
+
+interface User {
+  id: string;
+  name: string;
+}
+
+const fetchUser = async (): Promise<User> => {
+  const response = await fetch(`${API_URL}/api/users/1`);
+
+  if (!response.ok) {
+    throw new Error('Error al obtener usuario');
+  }
+
+  return response.json();
+};
 
 export default function Home() {
+  const { data: user, isLoading, isError } = useQuery({
+    queryKey: ['user'],
+    queryFn: fetchUser,
+  });
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.hero}>
-        <Text style={styles.heroTitle}>¡Hola, Usuario!</Text>
-        <Text style={styles.heroSubtitle}>
-          Juntos hacemos un planeta más verde
-        </Text>
+        {isLoading ? (
+          <ActivityIndicator color="#fff" />
+        ) : isError ? (
+          <Text style={styles.heroTitle}>Error al cargar usuario</Text>
+        ) : (
+          <>
+            <Text style={styles.heroTitle}>
+              ¡Hola, {user?.name}!
+            </Text>
+            <Text style={styles.heroSubtitle}>
+              Juntos hacemos un planeta más verde
+            </Text>
+          </>
+        )}
       </View>
 
       <View style={styles.content}>
@@ -88,7 +120,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 24,
     gap: 24,
-    paddingBottom: 100, 
+    paddingBottom: 100,
   },
   sectionTitle: {
     fontSize: 18,

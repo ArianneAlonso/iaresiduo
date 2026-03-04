@@ -1,104 +1,133 @@
-import { Calendar as CalendarIcon, MapPin, Users } from 'lucide-react-native';
+import { useEffect, useState } from 'react';
+import { Calendar as CalendarIcon, Users } from 'lucide-react-native';
 import AppHeader from '../../src/components/AppHeader';
 import EventCard from '../../src/components/EventCard';
 import { Card } from '../../src/components/ui/card';
 import { Badge } from '../../src/components/ui/badge';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { API_URL } from '../../src/config/api';
 
-const events = [
-  {
-    id: "1",
-    title: "Jornada de Limpieza",
-    date: "Sábado, 5 de Noviembre - 9:00 AM",
-    location: "Plaza Central",
-    description: "Únete a nuestra jornada de limpieza comunitaria y gana puntos extra por participar",
-    attendees: 45,
-  },
-  {
-    id: "2",
-    title: "Taller de Reciclaje",
-    date: "Miércoles, 10 de Noviembre - 3:00 PM",
-    location: "Centro Comunitario",
-    description: "Aprende técnicas avanzadas de separación de residuos y reciclaje creativo",
-    attendees: 28,
-  },
-  {
-    id: "3",
-    title: "Feria Eco-Sostenible",
-    date: "Domingo, 15 de Noviembre - 10:00 AM",
-    location: "Parque Municipal",
-    description: "Conoce productos sustentables y participa en actividades ecológicas para toda la familia",
-    attendees: 120,
-  },
-];
+interface CalendarDay {
+  day: string;
+  date: number;
+  hasEvent: boolean;
+}
 
-const upcomingDays = [
-  { day: "Lun", date: "1", hasEvent: false },
-  { day: "Mar", date: "2", hasEvent: false },
-  { day: "Mié", date: "3", hasEvent: false },
-  { day: "Jue", date: "4", hasEvent: false },
-  { day: "Vie", date: "5", hasEvent: true },
-  { day: "Sáb", date: "6", hasEvent: false },
-  { day: "Dom", date: "7", hasEvent: false },
-];
+interface EventItem {
+  id: string;
+  title: string;
+  date: string;
+  location: string;
+  description: string;
+  attendees: number;
+}
 
 export default function Events() {
+  const [events, setEvents] = useState<EventItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const upcomingDays: CalendarDay[] = [
+    { day: 'Lun', date: 4, hasEvent: false },
+    { day: 'Mar', date: 5, hasEvent: true },
+    { day: 'Mié', date: 6, hasEvent: false },
+    { day: 'Jue', date: 7, hasEvent: true },
+    { day: 'Vie', date: 8, hasEvent: false },
+    { day: 'Sáb', date: 9, hasEvent: false },
+    { day: 'Dom', date: 10, hasEvent: false },
+  ];
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/events`)
+      .then(res => res.json())
+      .then(data => {
+        setEvents(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log('Error cargando eventos:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={[styles.container, styles.center]}>
+        <ActivityIndicator size="large" color="#4caf50" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <AppHeader title="Eventos Ambientales" showBack />
 
-      <View style={styles.content}>
+      <ScrollView contentContainerStyle={styles.content}>
         <Card style={styles.calendarCard}>
           <View style={styles.calendarHeader}>
-            <CalendarIcon size={20} color="#1f5c2e" />
+            <CalendarIcon size={20} color="#4caf50" />
             <Text style={styles.calendarTitle}>Noviembre 2025</Text>
           </View>
-          
+
           <View style={styles.calendarGrid}>
             {upcomingDays.map((day) => (
               <View
                 key={day.date}
                 style={[
                   styles.calendarDay,
-                  day.hasEvent && styles.calendarDayActive
+                  day.hasEvent && styles.calendarDayActive,
                 ]}
               >
-                <Text style={styles.dayAbbr}>{day.day}</Text>
-                <Text style={styles.dayNumber}>{day.date}</Text>
+                <Text
+                  style={[
+                    styles.dayAbbr,
+                    day.hasEvent && styles.dayTextActive,
+                  ]}
+                >
+                  {day.day}
+                </Text>
+
+                <Text
+                  style={[
+                    styles.dayNumber,
+                    day.hasEvent && styles.dayTextActive,
+                  ]}
+                >
+                  {day.date}
+                </Text>
+
                 {day.hasEvent && <View style={styles.eventDot} />}
               </View>
             ))}
           </View>
         </Card>
 
-        <View style={styles.eventsSection}>
+        <View>
           <View style={styles.eventsHeader}>
             <Text style={styles.eventsTitle}>Próximos Eventos</Text>
-            <Badge variant="secondary" style={styles.badge}>
+            <Badge variant="secondary">
               {events.length} eventos
             </Badge>
           </View>
-          
-          <View style={styles.eventsList}>
-            {events.map((event) => (
-              <View key={event.id} style={styles.eventItem}>
-                <EventCard 
-                  title={event.title}
-                  date={event.date}
-                  location={event.location}
-                  description={event.description}
-                />
-                <View style={styles.attendees}>
-                  <Users size={16} color="#6b7280" />
-                  <Text style={styles.attendeesText}>
-                    {event.attendees} personas confirmadas
-                  </Text>
-                </View>
+
+          {events.map((event) => (
+            <View key={event.id} style={styles.eventWrapper}>
+              <EventCard
+                title={event.title}
+                date={event.date}
+                location={event.location}
+                description={event.description}
+              />
+
+              <View style={styles.attendees}>
+                <Users size={16} color="#4caf50" />
+                <Text style={styles.attendeesText}>
+                  {event.attendees} personas confirmadas
+                </Text>
               </View>
-            ))}
-          </View>
+            </View>
+          ))}
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -106,91 +135,90 @@ export default function Events() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingBottom: 80, // Espacio para BottomNav
+    backgroundColor: '#ffffff',
+  },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   content: {
     padding: 16,
-    gap: 24,
   },
   calendarCard: {
-    padding: 16,
+    padding: 18,
+    borderRadius: 16,
+    marginBottom: 24,
   },
   calendarHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
     marginBottom: 16,
   },
   calendarTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#111827',
+    color: '#1b5e20',
+    marginLeft: 8,
   },
   calendarGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
     justifyContent: 'space-between',
   },
   calendarDay: {
-    flex: 1,
-    minWidth: 40,
+    width: 40,
     alignItems: 'center',
     paddingVertical: 8,
-    paddingHorizontal: 4,
-    borderRadius: 8,
-    backgroundColor: '#f8fafc',
+    borderRadius: 10,
+    backgroundColor: '#e8f5e9',
+    marginBottom: 8,
   },
   calendarDayActive: {
-    backgroundColor: '#1f5c2e',
+    backgroundColor: '#4caf50',
   },
   dayAbbr: {
     fontSize: 12,
     fontWeight: '500',
-    color: '#6b7280',
+    color: '#2e7d32',
   },
   dayNumber: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#111827',
+    color: '#1b5e20',
+  },
+  dayTextActive: {
+    color: '#ffffff',
   },
   eventDot: {
     width: 4,
     height: 4,
     borderRadius: 2,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     marginTop: 4,
   },
-  eventsSection: {},
   eventsHeader: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    alignItems: 'center',
+    marginBottom: 16,
   },
   eventsTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#111827',
+    color: '#1b5e20',
   },
-  badge: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+  eventWrapper: {
+    marginBottom: 20,
   },
-  eventsList: {
-    gap: 12,
-  },
-  eventItem: {},
   attendees: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
     marginTop: 8,
-    marginLeft: 16,
+    marginLeft: 12,
   },
   attendeesText: {
     fontSize: 12,
-    color: '#6b7280',
+    color: '#374151',
+    marginLeft: 6,
   },
 });

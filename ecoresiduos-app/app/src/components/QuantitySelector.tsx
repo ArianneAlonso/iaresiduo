@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Minus, Plus } from 'lucide-react-native';
-import { Button } from '../../src/components/ui/button'; 
+import { Button } from '../../src/components/ui/button';
 
 interface QuantitySelectorProps {
   value: number;
@@ -11,12 +11,12 @@ interface QuantitySelectorProps {
   label?: string;
 }
 
-export default function QuantitySelector({ 
-  value, 
-  onChange, 
-  min = 1, 
-  max = 100, 
-  label 
+export default function QuantitySelector({
+  value,
+  onChange,
+  min = 1,
+  max = 100,
+  label,
 }: QuantitySelectorProps) {
   const handleIncrement = () => {
     if (value < max) {
@@ -31,8 +31,9 @@ export default function QuantitySelector({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.wrapper}>
       {label && <Text style={styles.label}>{label}</Text>}
+
       <View style={styles.buttonsContainer}>
         <Button
           size="icon"
@@ -41,11 +42,13 @@ export default function QuantitySelector({
           disabled={value <= min}
           testID="button-decrement"
         >
-          <Minus size={16} color="#6b7280" />
+          <Minus size={18} color="#4caf50" />
         </Button>
+
         <Text style={styles.quantity} testID="text-quantity">
           {value}
         </Text>
+
         <Button
           size="icon"
           variant="outline"
@@ -53,7 +56,7 @@ export default function QuantitySelector({
           disabled={value >= max}
           testID="button-increment"
         >
-          <Plus size={16} color="#6b7280" />
+          <Plus size={18} color="#4caf50" />
         </Button>
       </View>
     </View>
@@ -61,27 +64,26 @@ export default function QuantitySelector({
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 16,
+    justifyContent: 'space-between',
   },
   label: {
     fontSize: 14,
     fontWeight: '500',
-    color: '#374151',
+    color: '#2e7d32',
     flex: 1,
   },
   buttonsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
   },
   quantity: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '700',
-    color: '#111827',
-    width: 48,
+    color: '#1b5e20',
+    width: 50,
     textAlign: 'center',
   },
 });

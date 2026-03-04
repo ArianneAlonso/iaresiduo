@@ -12,38 +12,48 @@ interface ContainerMarkerProps {
   schedule?: string;
 }
 
-export default function ContainerMarker({ 
-  type, 
-  address, 
-  materials, 
-  distance, 
-  schedule 
+export default function ContainerMarker({
+  type,
+  address,
+  materials,
+  distance,
+  schedule,
 }: ContainerMarkerProps) {
   return (
     <Card style={styles.card}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <MapPin size={20} color="#1f5c2e" />
+          <MapPin size={20} color="#4caf50" />
         </View>
+
         <View style={styles.textContainer}>
-          <Text style={styles.title} numberOfLines={1}>{type}</Text>
-          <Text style={styles.address} numberOfLines={2}>{address}</Text>
-          
-          {distance && <Text style={styles.distance}>{distance}</Text>}
-          
+          <Text style={styles.title} numberOfLines={1}>
+            {type}
+          </Text>
+
+          <Text style={styles.address} numberOfLines={2}>
+            {address}
+          </Text>
+
+          {distance && (
+            <Text style={styles.distance}>
+              {distance}
+            </Text>
+          )}
+
           <View style={styles.materialsContainer}>
             {materials.map((material) => (
-              <Badge 
-                key={material} 
-                variant="secondary" 
-                style={styles.badge}
-              >
+              <Badge key={material} style={styles.badge}>
                 {material}
               </Badge>
             ))}
           </View>
-          
-          {schedule && <Text style={styles.schedule}>{schedule}</Text>}
+
+          {schedule && (
+            <Text style={styles.schedule}>
+              {schedule}
+            </Text>
+          )}
         </View>
       </View>
     </Card>
@@ -53,54 +63,57 @@ export default function ContainerMarker({
 const styles = StyleSheet.create({
   card: {
     padding: 16,
+    borderRadius: 16,
+    backgroundColor: '#ffffff',
   },
   content: {
     flexDirection: 'row',
-    gap: 12,
     alignItems: 'flex-start',
   },
   iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#eff6ff',
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#e8f5e9',
     justifyContent: 'center',
     alignItems: 'center',
-    flexShrink: 0,
+    marginRight: 12,
   },
   textContainer: {
     flex: 1,
-    minWidth: 0,
   },
   title: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#111827',
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: '#4caf50',
     marginBottom: 4,
   },
   address: {
     fontSize: 14,
-    color: '#6b7280',
-    marginBottom: 8,
-    lineHeight: 20,
+    color: '#333',
+    marginBottom: 6,
   },
   distance: {
-    fontSize: 12,
-    color: '#6b7280',
-    marginBottom: 8,
+    fontSize: 13,
+    color: '#4caf50',
+    marginBottom: 6,
+    fontWeight: '500',
   },
   materialsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 4,
-    marginBottom: 8,
+    marginBottom: 6,
   },
   badge: {
+    backgroundColor: '#9ccc65',
+    marginRight: 6,
+    marginBottom: 6,
     paddingHorizontal: 8,
     paddingVertical: 4,
+    borderRadius: 12,
   },
   schedule: {
     fontSize: 12,
-    color: '#6b7280',
+    color: '#555',
   },
 });

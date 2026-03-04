@@ -23,9 +23,27 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [address, setAddress] = useState('');
 
-  const handleRegister = () => {
-    console.log('Register:', { name, email, password, address });
-    navigation.replace('MainTabs');
+  const handleRegister = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password, address }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || 'Error al registrar usuario');
+        return;
+      }
+
+      console.log('Usuario registrado:', data);
+      navigation.replace('MainTabs');
+    } catch (error) {
+      console.error(error);
+      alert('Error al conectar con el servidor');
+    }
   };
 
   return (
@@ -36,9 +54,7 @@ export default function Register() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.hero}>
           <Text style={styles.title}>Crear Cuenta</Text>
-          <Text style={styles.subtitle}>
-            Únete a la comunidad eco-responsable
-          </Text>
+          <Text style={styles.subtitle}>Únete a la comunidad eco-responsable</Text>
         </View>
 
         <Card style={styles.card}>
@@ -47,12 +63,7 @@ export default function Register() {
               <Label>Nombre completo</Label>
               <View style={styles.inputWrapper}>
                 <User size={20} color="#3f8f3a" style={styles.inputIcon} />
-                <Input
-                  placeholder="Juan Pérez"
-                  value={name}
-                  onChangeText={setName}
-                  style={styles.input}
-                />
+                <Input placeholder="Juan Pérez" value={name} onChangeText={setName} style={styles.input} />
               </View>
             </View>
 
@@ -75,13 +86,7 @@ export default function Register() {
               <Label>Contraseña</Label>
               <View style={styles.inputWrapper}>
                 <Lock size={20} color="#3f8f3a" style={styles.inputIcon} />
-                <Input
-                  placeholder="••••••••"
-                  value={password}
-                  onChangeText={setPassword}
-                  secureTextEntry
-                  style={styles.input}
-                />
+                <Input placeholder="••••••••" value={password} onChangeText={setPassword} secureTextEntry style={styles.input} />
               </View>
             </View>
 
@@ -89,31 +94,17 @@ export default function Register() {
               <Label>Dirección</Label>
               <View style={styles.inputWrapper}>
                 <MapPin size={20} color="#3f8f3a" style={styles.inputIcon} />
-                <Input
-                  placeholder="Av. Principal 123"
-                  value={address}
-                  onChangeText={setAddress}
-                  style={styles.input}
-                />
+                <Input placeholder="Av. Principal 123" value={address} onChangeText={setAddress} style={styles.input} />
               </View>
             </View>
 
-            <Button
-              onPress={handleRegister}
-              style={styles.button}
-            >
-              Crear Cuenta
-            </Button>
+            <Button onPress={handleRegister} style={styles.button}>Crear Cuenta</Button>
           </View>
 
           <View style={styles.footer}>
-            <Text style={styles.footerText}>
-              ¿Ya tienes cuenta?
-            </Text>
+            <Text style={styles.footerText}>¿Ya tienes cuenta?</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-              <Text style={styles.loginLink}>
-                Inicia sesión
-              </Text>
+              <Text style={styles.loginLink}>Inicia sesión</Text>
             </TouchableOpacity>
           </View>
         </Card>
@@ -123,73 +114,19 @@ export default function Register() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#e9e1cf',
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  hero: {
-    alignItems: 'center',
-    marginBottom: 28,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1f5c2e',
-    marginBottom: 6,
-  },
-  subtitle: {
-    fontSize: 15,
-    color: '#3f8f3a',
-    textAlign: 'center',
-  },
-  card: {
-    padding: 24,
-    backgroundColor: '#ffffff',
-    borderRadius: 24,
-    elevation: 4,
-  },
-  form: {
-    gap: 16,
-  },
-  inputGroup: {
-    gap: 8,
-  },
-  inputWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f4f1e8',
-    borderRadius: 14,
-    paddingHorizontal: 10,
-  },
-  inputIcon: {
-    marginRight: 6,
-  },
-  input: {
-    flex: 1,
-    paddingVertical: 12,
-  },
-  button: {
-    marginTop: 14,
-    backgroundColor: '#1f5c2e',
-    borderRadius: 14,
-  },
-  footer: {
-    marginTop: 28,
-    alignItems: 'center',
-    gap: 4,
-  },
-  footerText: {
-    fontSize: 14,
-    color: '#1f5c2e',
-  },
-  loginLink: {
-    fontSize: 15,
-    color: '#3f8f3a',
-    fontWeight: '600',
-  },
+  container: { flex: 1, backgroundColor: '#e9e1cf' },
+  scrollContainer: { flexGrow: 1, justifyContent: 'center', padding: 20 },
+  hero: { alignItems: 'center', marginBottom: 28 },
+  title: { fontSize: 32, fontWeight: 'bold', color: '#1f5c2e', marginBottom: 6 },
+  subtitle: { fontSize: 15, color: '#3f8f3a', textAlign: 'center' },
+  card: { padding: 24, backgroundColor: '#ffffff', borderRadius: 24, elevation: 4 },
+  form: { gap: 16 },
+  inputGroup: { gap: 8 },
+  inputWrapper: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#f4f1e8', borderRadius: 14, paddingHorizontal: 10 },
+  inputIcon: { marginRight: 6 },
+  input: { flex: 1, paddingVertical: 12 },
+  button: { marginTop: 14, backgroundColor: '#1f5c2e', borderRadius: 14 },
+  footer: { marginTop: 28, alignItems: 'center', gap: 4 },
+  footerText: { fontSize: 14, color: '#1f5c2e' },
+  loginLink: { fontSize: 15, color: '#3f8f3a', fontWeight: '600' },
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, useWindowDimensions } from 'react-native';
 import { Calendar, MapPin } from 'lucide-react-native';
-import { Card } from '../../src/components/ui/card'; 
-import { Button } from '../../src/components/ui/button'; 
+import { Card } from '../../src/components/ui/card';
+import { Button } from '../../src/components/ui/button';
 
 interface EventCardProps {
   title: string;
@@ -10,37 +10,52 @@ interface EventCardProps {
   location: string;
   description: string;
   imageUrl?: string;
+  onConfirm?: () => void;
 }
 
-export default function EventCard({ title, date, location, description, imageUrl }: EventCardProps) {
+export default function EventCard({
+  title,
+  date,
+  location,
+  description,
+  imageUrl,
+  onConfirm,
+}: EventCardProps) {
   const { width } = useWindowDimensions();
 
   return (
     <Card style={styles.card}>
       {imageUrl && (
-        <Image 
-          source={{ uri: imageUrl }} 
-          style={[styles.image, { width }]} 
+        <Image
+          source={{ uri: imageUrl }}
+          style={[styles.image, { width }]}
           resizeMode="cover"
         />
       )}
+
       <View style={styles.content}>
-        <Text style={styles.title} numberOfLines={1}>{title}</Text>
-        <Text style={styles.description} numberOfLines={2}>{description}</Text>
-        
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
+
+        <Text style={styles.description} numberOfLines={2}>
+          {description}
+        </Text>
+
         <View style={styles.meta}>
           <View style={styles.metaItem}>
-            <Calendar size={16} color="#6b7280" />
+            <Calendar size={16} color="#4caf50" />
             <Text style={styles.metaText}>{date}</Text>
           </View>
+
           <View style={styles.metaItem}>
-            <MapPin size={16} color="#6b7280" />
+            <MapPin size={16} color="#4caf50" />
             <Text style={styles.metaText}>{location}</Text>
           </View>
         </View>
-        
-        <Button style={styles.button} testID="button-rsvp">
-          Confirmar Asistencia
+
+        <Button style={styles.button} onPress={onConfirm}>
+          Confirmar asistencia
         </Button>
       </View>
     </Card>
@@ -49,42 +64,46 @@ export default function EventCard({ title, date, location, description, imageUrl
 
 const styles = StyleSheet.create({
   card: {
-    marginVertical: 8,
+    marginVertical: 10,
     overflow: 'hidden',
-    borderRadius: 12,
+    borderRadius: 16,
+    backgroundColor: '#ffffff',
   },
   image: {
-    height: 128,
+    height: 160,
   },
   content: {
-    padding: 16,
+    padding: 18,
   },
   title: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#111827',
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#4caf50',
     marginBottom: 8,
   },
   description: {
     fontSize: 14,
-    color: '#6b7280',
+    color: '#333',
     lineHeight: 20,
-    marginBottom: 12,
+    marginBottom: 14,
   },
   meta: {
-    gap: 8,
-    marginBottom: 16,
+    marginBottom: 18,
   },
   metaItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    marginBottom: 6,
   },
   metaText: {
     fontSize: 14,
-    color: '#111827',
+    color: '#222',
+    marginLeft: 8,
   },
   button: {
     width: '100%',
+    backgroundColor: '#9ccc65',
+    borderRadius: 30,
+    paddingVertical: 12,
   },
 });

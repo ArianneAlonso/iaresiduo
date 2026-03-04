@@ -1,51 +1,69 @@
-import { MapPin, Search, Filter } from 'lucide-react-native';
+import { useEffect, useState, useMemo } from 'react';
+import { Search, Filter } from 'lucide-react-native';
 import MapView, { Marker } from 'react-native-maps';
 import AppHeader from '../../src/components/AppHeader';
 import ContainerMarker from '../../src/components/ContainerMarker';
 import { Input } from '../../src/components/ui/input';
 import { Button } from '../../src/components/ui/button';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { API_URL } from '../../src/config/api';
 
-const containers = [
-  {
-    id: "1",
-    type: "Contenedor Verde",
-    address: "Av. Principal 123",
-    materials: ["Plástico", "Vidrio", "Papel"],
-    distance: "0.5 km",
-    schedule: "Lun - Vie: 7:00 AM - 6:00 PM",
-    latitude: -26.1775,
-    longitude: -58.1781,
-  },
-  {
-    id: "2",
-    type: "Punto Ecológico",
-    address: "Plaza Central",
-    materials: ["Electrónicos", "Baterías"],
-    distance: "1.2 km",
-    schedule: "Mar y Jue: 9:00 AM - 5:00 PM",
-    latitude: -26.1800,
-    longitude: -58.1750,
-  },
-  {
-    id: "3",
-    type: "Contenedor Azul",
-    address: "Calle Secundaria 456",
-    materials: ["Papel", "Cartón"],
-    distance: "0.8 km",
-    schedule: "Lun - Sáb: 8:00 AM - 8:00 PM",
-    latitude: -26.1750,
-    longitude: -58.1800,
-  },
-];
+interface Container {
+  id: string;
+  type: string;
+  address: string;
+  materials: string[];
+  latitude: number;
+  longitude: number;
+  schedule?: string;
+}
 
 export default function Map() {
+  const [containers, setContainers] = useState<Container[]>([]);
+  const [search, setSearch] = useState<string>('');
+  const [activeFilter, setActiveFilter] = useState<string>('Todos');
+
+  useEffect(() => {
+    const fetchContainers = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/containers`);
+        const data: Container[] = await response.json();
+        setContainers(data);
+      } catch (error) {
+        console.error('Error fetching containers:', error);
+      }
+    };
+
+    fetchContainers();
+  }, []);
+
+  const materialsList = useMemo(() => {
+    const allMaterials = containers.flatMap(c => c.materials ?? []);
+    const unique = [...new Set(allMaterials)];
+    return ['Todos', ...unique];
+  }, [containers]);
+
+  const filteredContainers = useMemo(() => {
+    return containers.filter(container => {
+      const matchesSearch =
+        container.address
+          ?.toLowerCase()
+          .includes(search.toLowerCase()) ?? false;
+
+      const matchesFilter =
+        activeFilter === 'Todos' ||
+        container.materials?.includes(activeFilter);
+
+      return matchesSearch && matchesFilter;
+    });
+  }, [containers, search, activeFilter]);
+
   return (
     <View style={styles.container}>
-      <AppHeader 
+      <AppHeader
         title="Mapa de Contenedores"
         action={
-          <Button size="icon" variant="ghost" testID="button-filter">
+          <Button size="icon" variant="ghost">
             <Filter size={20} color="#6b7280" />
           </Button>
         }
@@ -58,32 +76,39 @@ export default function Map() {
             <Input
               placeholder="Buscar por dirección..."
               style={styles.searchInput}
-              testID="input-search"
+              value={search}
+              onChangeText={setSearch}
             />
           </View>
         </View>
 
-        <ScrollView 
-          horizontal 
+        <ScrollView
+          horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.filtersScroll}
           contentContainerStyle={styles.filtersContainer}
         >
-          <TouchableOpacity style={styles.filterBadgeActive}>
-            <Text style={styles.filterTextActive}>Todos</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterBadge}>
-            <Text style={styles.filterText}>Plástico</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterBadge}>
-            <Text style={styles.filterText}>Vidrio</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterBadge}>
-            <Text style={styles.filterText}>Papel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.filterBadge}>
-            <Text style={styles.filterText}>Electrónicos</Text>
-          </TouchableOpacity>
+          {materialsList.map(material => (
+            <TouchableOpacity
+              key={material}
+              style={
+                activeFilter === material
+                  ? styles.filterBadgeActive
+                  : styles.filterBadge
+              }
+              onPress={() => setActiveFilter(material)}
+            >
+              <Text
+                style={
+                  activeFilter === material
+                    ? styles.filterTextActive
+                    : styles.filterText
+                }
+              >
+                {material}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </ScrollView>
 
         <MapView
@@ -95,7 +120,7 @@ export default function Map() {
             longitudeDelta: 0.02,
           }}
         >
-          {containers.map((container) => (
+          {filteredContainers.map(container => (
             <Marker
               key={container.id}
               coordinate={{
@@ -111,13 +136,12 @@ export default function Map() {
         <View style={styles.listSection}>
           <Text style={styles.sectionTitle}>Contenedores Cercanos</Text>
           <View style={styles.containersList}>
-            {containers.map((container) => (
-              <ContainerMarker 
-                key={container.id} 
+            {filteredContainers.map(container => (
+              <ContainerMarker
+                key={container.id}
                 type={container.type}
                 address={container.address}
                 materials={container.materials}
-                distance={container.distance}
                 schedule={container.schedule}
               />
             ))}
@@ -160,6 +184,7 @@ const styles = StyleSheet.create({
   },
   filtersContainer: {
     gap: 8,
+    flexDirection: 'row',
   },
   filterBadge: {
     paddingHorizontal: 12,
@@ -184,11 +209,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   map: {
-    height: 200,
+    height: 220,
     borderRadius: 16,
     overflow: 'hidden',
   },
-  listSection: {},
+  listSection: {
+    marginTop: 16,
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '600',

@@ -11,8 +11,18 @@ interface UpcomingCollectionProps {
   daysUntil: number;
 }
 
-export default function UpcomingCollection({ date, time, materials, daysUntil }: UpcomingCollectionProps) {
-  const daysText = daysUntil === 0 ? "Hoy" : daysUntil === 1 ? "Mañana" : `En ${daysUntil} días`;
+export default function UpcomingCollection({
+  date,
+  time,
+  materials,
+  daysUntil,
+}: UpcomingCollectionProps) {
+  const daysText =
+    daysUntil === 0
+      ? 'Hoy'
+      : daysUntil === 1
+      ? 'Mañana'
+      : `En ${daysUntil} días`;
 
   return (
     <Card style={styles.card}>
@@ -21,27 +31,29 @@ export default function UpcomingCollection({ date, time, materials, daysUntil }:
           <Text style={styles.title}>Próxima Recolección</Text>
           <Text style={styles.daysText}>{daysText}</Text>
         </View>
+
         <View style={styles.trashIcon}>
-          <Trash2 size={20} color="#6b7280" />
+          <Trash2 size={20} color="#4caf50" />
         </View>
       </View>
-      
+
       <View style={styles.metaContainer}>
         <View style={styles.metaItem}>
-          <Calendar size={16} color="#6b7280" />
+          <Calendar size={16} color="#4caf50" />
           <Text style={styles.metaText}>{date}</Text>
         </View>
+
         <View style={styles.metaItem}>
-          <Clock size={16} color="#6b7280" />
+          <Clock size={16} color="#4caf50" />
           <Text style={styles.metaText}>{time}</Text>
         </View>
       </View>
-      
+
       <View style={styles.materialsContainer}>
         {materials.map((material) => (
-          <Badge key={material} variant="secondary" style={styles.badge}>
-            {material}
-          </Badge>
+          <View key={material} style={styles.badgeWrapper}>
+            <Badge variant="secondary">{material}</Badge>
+          </View>
         ))}
       </View>
     </Card>
@@ -50,52 +62,53 @@ export default function UpcomingCollection({ date, time, materials, daysUntil }:
 
 const styles = StyleSheet.create({
   card: {
-    padding: 16,
+    padding: 18,
+    borderRadius: 16,
+    backgroundColor: '#ffffff',
   },
   header: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    marginBottom: 14,
   },
   title: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#111827',
+    color: '#1b5e20',
     marginBottom: 4,
   },
   daysText: {
     fontSize: 14,
-    color: '#6b7280',
+    color: '#2e7d32',
+    fontWeight: '500',
   },
   trashIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#f1f5f9',
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: '#e8f5e9',
     justifyContent: 'center',
     alignItems: 'center',
   },
   metaContainer: {
-    gap: 8,
-    marginBottom: 12,
+    marginBottom: 14,
   },
   metaItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    marginBottom: 8,
   },
   metaText: {
     fontSize: 14,
-    color: '#111827',
+    color: '#374151',
+    marginLeft: 8,
   },
   materialsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
   },
-  badge: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
+  badgeWrapper: {
+    marginRight: 8,
+    marginBottom: 8,
   },
 });
